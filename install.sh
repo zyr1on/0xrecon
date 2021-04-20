@@ -9,8 +9,10 @@ if [[ $(echo $GOPATH) = "" ]] || [[ $(echo $GOPATH) != "$HOME/go" ]]; then
 	echo "Do you want to set GOPATH y/n:> "
 	read answer
 	if [ "$answer" == "y" ] || [ "$answer" == "yes" ];then
-		export PATH=$PATH:$(go env GOPATH)/bin
-		export GOPATH=$(go env GOPATH)
+		echo -e "\n" >> ~/.bashrc
+		echo "export PATH=$PATH:$(go env GOPATH)/bin" >> ~/.bashrc
+		echo "export GOPATH=$(go env GOPATH)" >> ~/.bashrc
+		source ~/.bashrc
 	else
 		break
 	fi
