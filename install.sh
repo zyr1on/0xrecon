@@ -74,7 +74,7 @@ else
 	not_installed+=("httpx")
 fi
 
-for value in "${not_installed[@]}";do
+for value in "${not_installed[@]}"; do
 	if [[ "$value" == *"gau"* ]]; then
 		$(GO111MODULE=on go get -u -v "github.com/lc/gau")
 	elif [[ "$value" == *"qsreplace"* ]]; then
@@ -87,7 +87,7 @@ for value in "${not_installed[@]}";do
 		$(GO111MODULE=on go get -v "github.com/projectdiscovery/httpx/cmd/httpx")
 	else
 		echo [!] All tools are installed
+		exit 1
 	fi
-	$(sudo cp $HOME/go/bin/* -r /usr/bin/)
 done
-
+$(sudo cp $HOME/go/bin/* -r /usr/bin/)
