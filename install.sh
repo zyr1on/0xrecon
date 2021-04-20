@@ -87,3 +87,4 @@ for value in "${not_installed[@]}";do
 		echo [!] All tools are installed
 	fi
 done
+$(sudo cp $HOME/go/bin/* -r /usr/bin/)
