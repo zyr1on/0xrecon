@@ -85,4 +85,5 @@ for value in "${not_installed[@]}";do
 		$(GO111MODULE=on go get -v "github.com/projectdiscovery/httpx/cmd/httpx")
 	else
 		echo [!] All tools are installed
+	fi
 done
