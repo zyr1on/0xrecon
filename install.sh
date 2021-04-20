@@ -87,7 +87,8 @@ for value in "${not_installed[@]}"; do
 		$(GO111MODULE=on go get -v "github.com/projectdiscovery/httpx/cmd/httpx")
 	else
 		echo [!] All tools are installed
+		$(sudo cp $HOME/go/bin/* -r /usr/bin/)
 		exit 1
 	fi
 done
-$(sudo cp $HOME/go/bin/* -r /usr/bin/)
+
