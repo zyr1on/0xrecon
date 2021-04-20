@@ -1,9 +1,9 @@
 #!/bin/bash
 
-
 echo -e "[?] Checking...\n"
 sleep 0.3
 
+#Check for GOPATH
 if [ $(echo $GOPATH) = "" ] || [ $(echo $GOPATH) != "$HOME/go" ]; then
 	echo [?] Go Path not setted
 	echo "Do you want to set GOPATH y/n:> "
@@ -18,6 +18,7 @@ else
 	echo "[!] Found GOPATH: $GOPATH"
 fi
 
+#Check for GOLANG tool
 if [ $(command -v go) ]; then
 	echo [!] GOLANG installed
 else
@@ -26,6 +27,7 @@ else
 fi
 
 not_installed=("")
+
 #check for gf
 if [ $(command -v gf) ]; then
 	echo [!] gf installed
@@ -34,6 +36,7 @@ else
 	not_installed+=("gf")
 fi
 sleep 0.2
+
 #check for gau
 if [ $(command -v gau ) ]; then
 	echo [!] gau installed
@@ -42,6 +45,7 @@ else
 	not_installed+=("gau")
 fi
 sleep 0.2
+
 #check for qsreplace
 if [ $(command -v qsreplace) ]; then
 	echo [!] qsreplace installed
@@ -50,6 +54,7 @@ else
 	not_installed+=("qsreplace")
 fi
 sleep 0.2
+
 #check for waybackurls
 if [ $(command -v waybackurls) ]; then
 	echo [!] Waybackurls installed
@@ -59,6 +64,7 @@ else
 fi
 sleep 0.2
 
+#check for httpx
 if [ $(command -v httpx) ]; then
 	echo [!] httpx installed
 else
