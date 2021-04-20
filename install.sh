@@ -4,7 +4,7 @@ echo -e "[?] Checking...\n"
 sleep 0.3
 
 #Check for GOPATH
-if [ $(echo $GOPATH) = "" ] || [ $(echo $GOPATH) != "$HOME/go" ]; then
+if [[ $(echo $GOPATH) = "" ]] || [[ $(echo $GOPATH) != "$HOME/go" ]]; then
 	echo [?] Go Path not setted
 	echo "Do you want to set GOPATH y/n:> "
 	read answer
@@ -71,14 +71,18 @@ else
 	echo [-] httpx not installed
 	not_installed+=("httpx")
 fi
+
 for value in "${not_installed[@]}";do
-	if [[ $value == "" ]]; then
-		echo "[!] all tools are installed"
+	if [[ "$value" == *"gau"* ]]; then
+		$(GO111MODULE=on go get -u -v "github.com/lc/gau")
+	elif [[ "$value" == *"qsreplace"* ]]; then
+		$(go get -u "github.com/tomnomnom/qsreplace")
+	elif [[ "$value" == *"waybackurls"* ]]; then
+		$(go get -u "github.com/tomnomnom/waybackurls")
+	elif [[ "$value" == *"gf"* ]]; then
+		$(go get -u "github.com/tomnomnom/gf")
+	elif [[ "$value" == *"httpx"* ]]; then
+		$(GO111MODULE=on go get -v "github.com/projectdiscovery/httpx/cmd/httpx")
 	else
-		if [[ "$value" == *"httpx"* ]]; then
-			$(go get -u "github.com/tomnomnom/hacks/$value" && GO111MODULE=on go get -v "github.com/projectdiscovery/httpx/cmd/httpx")
-		else
-			$(go get -u "github.com/tomnomnom/hacks/$value")
-		fi
-	fi
+		echo [!] All tools are installed
 done
