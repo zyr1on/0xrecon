@@ -74,21 +74,14 @@ else
 	not_installed+=("httpx")
 fi
 
-for value in "${not_installed[@]}"; do
-	if [[ "$value" == *"gau"* ]]; then
+for value in "${not_installed[@]}";do
+	if [[ "$value" == *"httpx"* ]] || [[ "$value" == *"gau"* ]];then
+		$(go get -u "github.com/tomnomnom/$value")
 		$(GO111MODULE=on go get -u -v "github.com/lc/gau")
-	elif [[ "$value" == *"qsreplace"* ]]; then
-		$(go get -u "github.com/tomnomnom/qsreplace")
-	elif [[ "$value" == *"waybackurls"* ]]; then
-		$(go get -u "github.com/tomnomnom/waybackurls")
-	elif [[ "$value" == *"gf"* ]]; then
-		$(go get -u "github.com/tomnomnom/gf")
-	elif [[ "$value" == *"httpx"* ]]; then
-		$(GO111MODULE=on go get -v "github.com/projectdiscovery/httpx/cmd/httpx")
+		$(GO111MODULE=on go get -v "github.com/projectdiscovery/httpx/cmd/httpx") 	
 	else
-		echo [!] All tools are installed
-		$(sudo cp $HOME/go/bin/* -r /usr/bin/)
-		exit 1
+		$(go get -u "github.com/tomnomnom/$value")	
 	fi
 done
-
+source ~/.bashrc
+echo [!] All tools are installed
