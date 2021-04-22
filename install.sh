@@ -1,5 +1,4 @@
 #!/bin/bash
-
 echo -e "[?] Checking...\n"
 sleep 0.3
 
