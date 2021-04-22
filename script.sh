@@ -6,7 +6,7 @@ if [[ $(ls scan/ &>/dev/null;echo $?) -eq 2 ]]; then
 	mkdir scan/
 	printf "[+] Scan file created. Data will be stored there: $(pwd)/scan \n"
 else
-	printf "[!] Old Scan file found.If you do not delete it, the data will be overwritten. Delete? y/n>> "
+	printf "[!] Old Scan file found. If you do not delete it, the data will be overwritten. Delete? y/n>> "
 	read scan_data
 	if [ "$scan_data" = "yes"  ] || [ "$scan_data" = "y" ];then
 		rm -rf scan
