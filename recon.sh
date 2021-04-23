@@ -43,13 +43,9 @@ replace() {
 
 http_x() {
 	if [ "$answer" = "y" ] || [ "$answer" = "yes" ]; then
-		if [[ "$pattern" == *"redirect"* ]]; then
-			cat scan/replaced_payload.out | httpx -title -status-code -silent -csp-probe -no-color -follow-redirects  > scan/httpx.out
-		else
-			cat scan/replaced_payload.out | httpx -title -status-code -silent -csp-probe -no-color > scan/httpx.out
-		fi
+		cat scan/replaced_payload.out | httpx -title -status-code -silent -csp-probe -no-color  > scan/httpx.out
 	else
-		cat scan/replaced_payload.out | httpx -title -status-code -silent -csp-probe -follow-redirects > scan/httpx.out
+		cat scan/replaced_payload.out | httpx -title -status-code -silent -csp-probe > scan/httpx.out
 	fi
 	cat scan/httpx.out | awk '{print $2,$3,$NF,$1}' | sort -u > scan/finish.out
 }
